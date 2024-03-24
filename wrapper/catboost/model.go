@@ -51,7 +51,7 @@ static bool GMUFN(
 	);
 }
 
-static const char* GetMetadata(
+static const char* GM(
     char* calcer,
     char* keyPtr, size_t keySize)
 {
@@ -114,7 +114,7 @@ func (model *Model) GetMetaData(key string, meta MetaInfo) error {
 
 	keyPtr := C.CString(key)
 	defer C.free(unsafe.Pointer(keyPtr))
-	cStrings := C.GoString(C.GetMetadata(
+	cStrings := C.GoString(C.GM(
 		(*C.char)(model.handler),
 		keyPtr,
 		C.size_t(len(key)),
