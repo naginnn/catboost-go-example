@@ -3,6 +3,11 @@
 This example uses a compiled library
 [CatBoost C library](https://catboost.ai/en/docs/concepts/c-plus-plus-api_dynamic-c-pluplus-wrapper)
 
+Clone this repository
+```
+git clone https://github.com/naginnn/catboost-go-example.git
+```
+
 Specify the model path (.cbm format only) in main.go
 ```
 model, err := catboost.Load("testmodel")
