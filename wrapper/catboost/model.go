@@ -41,7 +41,7 @@ static bool CMP(
 	);
 }
 
-static bool GF(
+static bool GMUFN(
     char* calcer,
     char*** features, size_t* featuresSize)
 {
@@ -132,7 +132,7 @@ func (model *Model) GetModelUsedFeaturesNames() {
 	fNamesPtr := makeCStringArrayPointer(fNames)
 	defer C.freeCharArray(fNamesPtr, C.int(len(fNames)))
 	var fNamesLength int
-	if !C.GF(
+	if !C.GMUFN(
 		(*C.char)(model.handler),
 		(***C.char)(unsafe.Pointer(fNamesPtr)),
 		(*C.size_t)(unsafe.Pointer(&fNamesLength)),
@@ -145,26 +145,10 @@ func (model *Model) GetDimensionsCount() int {
 	return int(C.GetPredictionDimensionsCount(model.handler))
 }
 
-// GetCatFeaturesCount returns a number of categorical features used for training
 func (model *Model) GetCatFeaturesCount() int {
 	return int(C.GetCatFeaturesCount(model.handler))
 }
 
-// Close deletes model handler
-func (model *Model) Close() error {
-	C.ModelCalcerDelete(model.handler)
-	//C.free(unsafe.Pointer(&model.handler))
-	return nil
-}
-
-func (model *Model) Free() error {
-	model.handler = nil
-	//C.freeModel(model.handler)
-	//C.free(unsafe.Pointer(&model.handler))
-	return nil
-}
-
-// Loads model from file
 func Load(filename string) (*Model, error) {
 	handler := C.ModelCalcerCreate()
 	if !C.LoadFullModelFromFile(handler, C.CString(filename)) {
@@ -277,7 +261,7 @@ func (model *Model) CalcModelPredictionSingle(floats []float32, cats []string) (
 
 func sigmoid(x float64) float64 {
 	//return 1.0 / (1.0 + math.Exp(-x))
-	return 0.1 / (1.0 + math.Exp(-x))
+	return 1.0 / (1.0 + math.Exp(-x))
 }
 
 func (model *Model) CalcModelPredictionProba(floats [][]float32, cats [][]string) ([]float64, error) {
@@ -293,4 +277,16 @@ func (model *Model) CalcModelPredictionProba(floats [][]float32, cats [][]string
 func (model *Model) CalcModelPredictionSingleProba(floats []float32, cats []string) (float64, error) {
 	raw, err := model.CalcModelPredictionSingle(floats, cats)
 	return sigmoid(raw), err
+}
+
+func (model *Model) Close() error {
+	C.ModelCalcerDelete(model.handler)
+	return nil
+}
+
+func (model *Model) Free() error {
+	model.handler = nil
+	//C.freeModel(model.handler)
+	//C.free(unsafe.Pointer(&model.handler))
+	return nil
 }
