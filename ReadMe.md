@@ -7,7 +7,7 @@ As an example to run in Docker (uses the catboost aarch64-linux folder):
 ```
 docker build -t catimage . && docker run -it catimage
 ```
-For local use the absolute path (uses the catboost aarch64 OSX folder):
+For local use the absolute path (uses the catlibosx aarch64 OSX folder):
 ```
 export DYLD_LIBRARY_PATH={PathToProj}/catlibosx/catboost/libs/model_interface
 go run main.go

@@ -182,8 +182,7 @@ func (model *Model) CalcModelPrediction(floats [][]float32, cats [][]string) ([]
 	if nSamples == 0 || floatLength+catLength == 0 {
 		return nil, fmt.Errorf("empty samples")
 	}
-
-	resultSize := model.GetDimensionsCount()
+	resultSize := model.GetDimensionsCount() * len(floats)
 	results := make([]float64, resultSize)
 
 	floatsBuf := make([]float32, nSamples*floatLength) // to prevent moving by GC
@@ -287,6 +286,6 @@ func (model *Model) Close() error {
 func (model *Model) Free() error {
 	model.handler = nil
 	//C.freeModel(model.handler)
-	//C.free(unsafe.Pointer(&model.handler))
+	C.free(model.handler)
 	return nil
 }
