@@ -1,4 +1,4 @@
-module GorutineTest
+module github.com/naginnn/catboostgo
 
 go 1.20
 

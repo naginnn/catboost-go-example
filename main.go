@@ -1,19 +1,20 @@
 package main
 
 import (
-	"GorutineTest/prediction"
 	"fmt"
+	"github.com/naginnn/catboostgo/wrapper/catboost"
 	"slices"
 )
 
 func main() {
-
-	model, err := prediction.Load("haka")
+	// only cbm format
+	model, err := catboost.Load("haka")
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	var param prediction.ClassParams
+	var param catboost.ClassParams
+	// get metadata from model
 	err = model.GetMetaData("class_params", &param)
 	if err != nil {
 		return

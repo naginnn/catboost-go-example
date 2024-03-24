@@ -1,4 +1,4 @@
-package prediction
+package catboost
 
 import (
 	"encoding/json"

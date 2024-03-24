@@ -1,4 +1,4 @@
-package prediction
+package catboost
 
 /*
 #cgo linux LDFLAGS: -L /app/catboost/catboost/libs/model_interface -lcatboostmodel
