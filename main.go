@@ -8,7 +8,7 @@ import (
 
 func main() {
 	// only cbm format
-	model, err := catboost.Load("pathtoyourmodel")
+	model, err := catboost.Load("testmodel")
 	if err != nil {
 		fmt.Println(err)
 	}

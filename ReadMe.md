@@ -3,6 +3,10 @@
 This example uses a compiled library
 [CatBoost C library](https://catboost.ai/en/docs/concepts/c-plus-plus-api_dynamic-c-pluplus-wrapper)
 
+Specify the model path (.cbm format only) in main.go
+```
+model, err := catboost.Load("testmodel")
+```
 As an example to run in Docker (uses the catboost aarch64-linux folder):
 ```
 docker build -t catimage . && docker run -it catimage
