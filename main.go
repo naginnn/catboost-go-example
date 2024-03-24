@@ -8,7 +8,7 @@ import (
 
 func main() {
 	// only cbm format
-	model, err := catboost.Load("haka")
+	model, err := catboost.Load("pathtoyourmodel")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -25,12 +25,6 @@ func main() {
 	fmt.Println(model.GetCatFeaturesCount())
 	fmt.Println(model.GetDimensionsCount())
 	floats := [][]float32{{
-		5.0, 0.0, 0.0, 1973.0, 0.0,
-		2048755.0, 9.0, 12.0, 431.0, 21103.0,
-		21088.0, 15.0, 0.0, 0.0, 0.0,
-		2048929.0, 22728486.0, 12.0, 0.0, 0.0,
-		22289201.0, 0.0, 42875644.0, 58761330.0,
-		45063584.0, 0.0, 0.0}, {
 		5.0, 0.0, 0.0, 1973.0, 0.0,
 		2048755.0, 9.0, 12.0, 431.0, 21103.0,
 		21088.0, 15.0, 0.0, 0.0, 0.0,
