@@ -29,6 +29,3 @@ cd catboost/catboost/libs/model_interface && ../../../ya make -r . --target-plat
 ```
 P.s Versions older than v1.1.1 are no longer supported by the yamake utility
 see [CatBoost C library](https://catboost.ai/en/docs/concepts/c-plus-plus-api_dynamic-c-pluplus-wrapper)
-
-as well as those other author repositories
-see [https://github.com/bourbaki](https://github.com/bourbaki/catboost-go)
